@@ -33,15 +33,10 @@ export default function RootLayout({
       isTokenValid = false;
     } else {
       //check if token is still valid
-      try {
         await axios.get("/api/user/checkAuthen", {
           headers: { Authorization: `Bearer ${token}` },
         });
         $authenStore.set({ token, authenUsername });
-      } catch (err:any) {
-        console.log(err.message);
-        isTokenValid = false;
-      }
     }
 
     //go to login if not logged in yet and trying to access protected route
@@ -62,7 +57,7 @@ export default function RootLayout({
   useEffect(() => {
     // Check authen when component mounts or route changes
     checkAuthen();
-  });
+  }, []);
 
   return (
     <html lang="en">
@@ -80,8 +75,8 @@ export default function RootLayout({
               </Title>
               {children}
               <Footer
-                studentId="660610747"
-                fullName="Chittapan Phahongsa"
+                studentId="660610739"
+                fullName="Kanchai Khumdee"
                 year="2024"
               />
             </Container>
